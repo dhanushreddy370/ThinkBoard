@@ -1,7 +1,7 @@
 import axios from "axios";
 // In production mode, the API_URL will be the URL of the production server
 // In development mode, the API_URL will be the URL of the development server
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000" : "/api";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/api";
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,

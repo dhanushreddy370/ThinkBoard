@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon, SaveIcon, Trash2Icon, Loader2Icon } from "lucide-react";
-import axios from "axios";
+import axios from "../lib/axios";
 import toast from "react-hot-toast";
 
 const NoteDetailPage = () => {
@@ -17,7 +17,7 @@ const NoteDetailPage = () => {
     useEffect(() => {
         const fetchNote = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/notes/${id}`);
+                const response = await axios.get(`/notes/${id}`);
                 setTitle(response.data.title);
                 setContent(response.data.content);
             } catch (error) {
@@ -39,7 +39,7 @@ const NoteDetailPage = () => {
 
         setIsSaving(true);
         try {
-            await axios.put(`http://localhost:3000/api/notes/${id}`, { title, content });
+            await axios.put(`/notes/${id}`, { title, content });
             toast.success("Note updated successfully");
             navigate("/"); // Optionally stay on page or go back
         } catch (error) {
@@ -55,7 +55,7 @@ const NoteDetailPage = () => {
 
         setIsDeleting(true);
         try {
-            await axios.delete(`http://localhost:3000/api/notes/${id}`);
+            await axios.delete(`/notes/${id}`);
             toast.success("Note deleted successfully");
             navigate("/");
         } catch (error) {
